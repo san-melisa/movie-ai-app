@@ -1,4 +1,90 @@
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;
+    color: #FFFFFF;
+    font-family: "Roboto Slab", serif;
+    
+
+}
+
+.container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000C36;
+    margin: 0 auto;
+    padding: 50px 30px;
+    min-height: 100vh;
+}
+
+header h1{
+    font-family: "Carter One", system-ui;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 1em;
+
+}
+
+header img {
+    display: block;
+    margin: 0 auto;
+}
+
+
+form label {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.6em;
+
+    
+}
+
+form textarea {
+    font-weight: 300;
+    background-color: #3B4877;
+    border: none;
+    border-radius: 8px;
+    resize: none;
+    display: block;
+    width: 100%;
+    color: #05060C;
+    min-height: 60px;
+    margin-bottom: 2.5em;
+}
+
+
+
+button { 
+    background-color: #51E08A;
+    color: #000C36;
+    border: none;
+    border-radius: 10px;
+    padding: 18px 15px;
+    font-family: inherit;
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 600;
+
+}
+
+.movie-title {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 0.8em;
+}
+
+.movie-description {
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+}
+
+.content {
+    margin-bottom: 4em;
 }
