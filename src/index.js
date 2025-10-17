@@ -37,12 +37,15 @@ document.addEventListener("submit", async e => {
             }
 
             container.innerHTML = `
-                <div class="content">
-                    <h2 class="movie-title">${data.title} (${data.releaseYear})</h2>
-                    <img src="${data.posterUrl}" class="poster"/>
-                    <p class="movie-description">${data.recommendation}</p>
+                <div class="movie-layout">
+                    <img src="${data.posterUrl}" class="poster" alt="poster"/>
+                    <div class="content">
+                        <h2 class="movie-title">${data.title} (${data.releaseYear})</h2>
+                        <p class="movie-description">${data.recommendation}</p>
+                        <button type="button" id="restart-btn">Go Again</button>
+                    </div>
                 </div>
-                <button type="button" id="restart-btn">Go Again</button>
+
             `
 
 
