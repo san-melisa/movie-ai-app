@@ -26,7 +26,7 @@ export async function handler(event) {
 
     if(!data || data.length === 0){
         console.log("No matching films found.")
-        return res.status(404).json({ error: "No matching films found."})
+        return { statusCode: 400, body: JSON.stringify({error: "No matching films found."}) }
     }
 
     const bestMatch = data[0]
@@ -58,15 +58,19 @@ export async function handler(event) {
     })
     const recommendationText = completion.choices[0].message.content;
 
-    res.json({
-      title: bestMatch.title,
-      releaseYear: bestMatch.releaseyear,
-      recommendation: recommendationText,
-      posterUrl: posterUrl
-    })
+   return{
+      statusCode: 200,
+      body: JSON.stringify({
+        title: bestMatch.title,
+        releaseYear: bestMatch.releaseyear,
+        recommendation: recommendationText,
+        posterUrl: posterUrl
+      }) 
+    }
   } catch (error) {
     console.error("An error has occured:" + error)
-    res.status(500).json({ error: error.message })
+    return { statusCode: 500, body: JSON.stringify({ error: error.message })}
+
   }
 }
 
