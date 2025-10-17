@@ -147,18 +147,3 @@ async function getMoviePoster(query) {
     }
 
 }
-
-async function startServer() {
-  await createMovieEmbeddingAndSave()
-    .then(() => console.log("🎬 All movies inserted!"))
-    .catch((err) => {
-      console.error("Movie insert failed, shutting down:", err);
-      process.exit(1); 
-    });
-
-  app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
-  });
-}
-
-startServer();
