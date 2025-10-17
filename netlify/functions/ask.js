@@ -1,22 +1,16 @@
 import { openai, supabase, tmdb } from "./config.js"
-import express from "express"
 import movies from "./content.js"
 
-const app = express()
 
-app.use(express.json())
-app.use(express.static("public"))
-
-app.post("/api/ask", async (req, res) => {
+export async function handler(event) {
   try {
+    const body = JSON.parse(event.body);
     const userInput = `
-        What’s your favorite movie and why? Answer: ${req.body.questionOne}
-        Are you in the mood for something new or a classic? Answer: ${req.body.questionTwo}
-        Do you wanna have fun or do you want something serious? Answer: ${req.body.questionThree}
-    `
-      .replace(/\s+/g, " ")
-      .trim()
-    // console.log(userInput)
+      What’s your favorite movie and why? Answer: ${body.questionOne}
+      Are you in the mood for something new or a classic? Answer: ${body.questionTwo}
+      Do you wanna have fun or do you want something serious? Answer: ${body.questionThree}
+    `.replace(/\s+/g, " ").trim();
+
     const userEmbeddingResponse = await openai.embeddings.create({
       model: "text-embedding-ada-002",
       input: userInput,
@@ -74,7 +68,7 @@ app.post("/api/ask", async (req, res) => {
     console.error("An error has occured:" + error)
     res.status(500).json({ error: error.message })
   }
-});
+}
 
 async function createMovieEmbeddingAndSave() {
   try {
