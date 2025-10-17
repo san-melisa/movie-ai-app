@@ -1,19 +1,29 @@
-# Getting Started
-Install the dependencies and run the project
-```
-npm install
-npm start
-```
+# Movie AI App 🎬🤖
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
-## About Scrimba
+**Movie AI App** is an intelligent movie recommendation assistant powered by OpenAI and Supabase. It allows users to get personalized movie suggestions based on their preferences and mood, complete with movie posters and fun descriptions.
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Fullstack Developer Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+**Live Demo:** [https://movie-ai-app1.netlify.app/](https://movie-ai-app1.netlify.app/)  
+**Design Prototype:** [Figma Link](https://www.figma.com/design/udzKM2FK6ZSMENGZ5QPUhe/PopChoice?node-id=0-1&p=f&t=RLOa69Y9VXeFgzRZ-0)
 
-- [Our courses](https://scrimba.com/courses)
-- [The Frontend Career Path](https://scrimba.com/fullstack-path-c0fullstack)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+---
 
-Happy Coding!
+## Features ✨
+
+* Converts all movies in `content.js` into **vector embeddings** and stores them in Supabase.  
+* Combines user answers from multiple questions into a single vector for comparison.  
+* Uses **Supabase RPC** to find movies similar to the user’s preferences.  
+* Generates **fun, personalized movie descriptions** with OpenAI Chat Completions.  
+* Fetches **movie posters** automatically from [TMDB](https://www.themoviedb.org/) for a rich visual experience.  
+* Provides an intuitive and interactive interface for discovering movies.
+* **Responsive design** works seamlessly on desktop, tablet, and mobile devices.
+
+
+---
+
+## Technologies Used 🛠️
+
+* **Frontend:** HTML, CSS, JavaScript  
+* **Backend:** Node.js + OpenAI API + Supabase (vector DB + RPC)  
+* **Movie Data & Posters:** [TMDB API](https://www.themoviedb.org/)  
+* **Deployment:** [Netlify](https://www.netlify.com/)  
+* **Design:** Figma  
