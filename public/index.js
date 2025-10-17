@@ -2,53 +2,57 @@ const questionOne = document.getElementById("question-one")
 const questionTwo = document.getElementById("question-two")
 const questionThree = document.getElementById("question-three")
 const main = document.getElementById("main")
-const form = document.getElementById("user-info-form")
 
 // Simple client-side validation and submit
-form.addEventListener('submit', async e => {
-    e.preventDefault()
-    const payload = {
-        questionOne: questionOne?.value?.trim() || "",
-        questionTwo: questionTwo?.value?.trim() || "",
-        questionThree: questionThree?.value?.trim() || ""
-    }
+document.addEventListener("submit", async e => {
+    if(e.target.id === "user-info-form"){
+        e.preventDefault()
+        
+        const form = e.target;
+        const questionOne = form.querySelector("#question-one").value.trim();
+        const questionTwo = form.querySelector("#question-two").value.trim();
+        const questionThree = form.querySelector("#question-three").value.trim();
 
-    if (!payload.questionOne || !payload.questionTwo || !payload.questionThree) {
-        alert('Please fill out all questions before submitting.')
-        return
-    }
+        const payload = { questionOne, questionTwo, questionThree };
 
-    try {
-        const response = await fetch('/api/ask', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-
-        const data = await response.json()
-
-        if (!response.ok) {
-            console.error('Server error:', data)
-            alert(data.error || 'Server returned an error. Check the server logs.')
-            return
+        if (!questionOne || !questionTwo || !questionThree) {
+        alert('Please fill out all questions before submitting.');
+        return;
         }
 
-        main.innerHTML = `
-            <div class="content">
-                <h2 class="movie-title">${data.title} (${data.releaseYear})</h2>
-                <p class="movie-description">${data.recommendation}</p>
-            </div>
-            <button type="button" id="restart-btn">Go Again</button>
-        `
+
+        try {
+            const response = await fetch('/api/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+
+            const data = await response.json()
+            console.log("forntend data", data)
+
+            if (!response.ok) {
+                console.error('Server error:', data)
+                alert(data.error || 'Server returned an error. Check the server logs.')
+                return
+            }
+
+            main.innerHTML = `
+                <div class="content">
+                    <h2 class="movie-title">${data.title} (${data.releaseyear})</h2>
+                    <p class="movie-description">${data.recommendation}</p>
+                </div>
+                <button type="button" id="restart-btn">Go Again</button>
+            `
 
 
-    } catch (error) {
-        console.log('Error:', error)
-        alert('Could not reach the server. Is it running on http://localhost:3000 ?')
+        } catch (error) {
+            console.log('Error:', error)
+            alert('Could not reach the server. Is it running on http://localhost:3000 ?')
+        }
     }
 })
 
-// Use event delegation so the dynamically inserted #restart-btn is handled
 document.addEventListener('click', (e) => {
      if (e.target.id === 'restart-btn') {
     main.innerHTML = `
