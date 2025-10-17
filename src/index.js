@@ -59,6 +59,11 @@ document.addEventListener("submit", async e => {
 document.addEventListener('click', (e) => {
      if (e.target.id === 'restart-btn') {
     container.innerHTML = `
+            <header>
+                <img src="public/images/PopChoice Icon.png"/>
+                <h1>PopChoice</h1>
+            </header>
+            <main>
                 <form id="user-info-form">
                     <label for="question-one">What’s your favorite movie and why?</label>
                     <textarea id="question-one"></textarea>
@@ -69,6 +74,7 @@ document.addEventListener('click', (e) => {
                     <textarea id="question-three"></textarea>
                     <button type="submit">Lets's Go</button>
                 </form>
+            </main>
     `
   }
 })
