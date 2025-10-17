@@ -1,4 +1,4 @@
-import { openai, supabase } from "../config.js";
+import { openai, supabase } from "../netlify/functions/config.js";
 import movies from "../content.js";
 
 async function createMovieEmbeddingAndSave() {
