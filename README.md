@@ -15,6 +15,8 @@
 * Generates **fun, personalized movie descriptions** with OpenAI Chat Completions.  
 * Fetches **movie posters** automatically from [TMDB](https://www.themoviedb.org/) for a rich visual experience.  
 * Provides an intuitive and interactive interface for discovering movies.
+* **Responsive design** works seamlessly on desktop, tablet, and mobile devices.
+
 
 ---
 
