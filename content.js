@@ -44,5 +44,55 @@ export default [
         title: "RRR",
         releaseYear: "2022",
         content: "RRR (3 hr 7 min): A fictitious story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s. South Indian action, drama film released in 2022. Directed by S. S. Rajamouli. Written by Vijayendra Prasad, S. S. Rajamouli and Sai Madhav Burra. Starring N. T. Rama Rao Jr., Ram Charan and Ajay Devgn. Rated 7.8 on IMDB"   
+    },
+    {
+        title: "Inside Out 2",
+        releaseYear: "2024",
+        content: "Inside Out 2 (1 hr 45 min): The emotions return for a new adventure inside Riley's mind as she faces new challenges growing up. Animation, Family film released in 2024. Directed by Pete Docter. Starring Amy Poehler, Phyllis Smith. Rated 8.3 on IMDB"
+    },
+    {
+        title: "Deadpool & Wolverine",
+        releaseYear: "2024",
+        content: "Deadpool & Wolverine (1 hr 50 min): Two anti-heroes team up for a chaotic adventure filled with action, humor, and unexpected twists. Action, Comedy film released in 2024. Directed by Shawn Levy. Starring Ryan Reynolds, Hugh Jackman. Rated 8.1 on IMDB"
+    },
+    {
+        title: "Moana 2",
+        releaseYear: "2024",
+        content: "Moana 2 (1 hr 40 min): Moana embarks on a new journey across the ocean, discovering more about her destiny and the mysteries of the sea. Animation, Adventure film released in 2024. Directed by Ron Clements and John Musker. Starring Auli'i Cravalho, Dwayne Johnson. Rated 7.9 on IMDB"
+    },
+    {
+        title: "Despicable Me 4",
+        releaseYear: "2024",
+        content: "Despicable Me 4 (1 hr 35 min): Gru and the Minions embark on another hilarious adventure, facing new villains and challenges. Animation, Comedy film released in 2024. Directed by Kyle Balda. Starring Steve Carell, Taraji P. Henson. Rated 7.8 on IMDB"
+    },
+    {
+        title: "Wicked",
+        releaseYear: "2024",
+        content: "Wicked (2 hr 30 min): The untold story of the witches of Oz, exploring friendship, rivalry, and the choices that define their destinies. Musical, Fantasy film released in 2024. Directed by Jon M. Chu. Starring Cynthia Erivo, Ariana Grande. Rated 7.7 on IMDB"
+    },
+    {
+        title: "Mufasa: The Lion King",
+        releaseYear: "2024",
+        content: "Mufasa: The Lion King (1 hr 45 min): A prequel to The Lion King, focusing on Mufasa's early life, challenges, and rise to leadership. Animation, Family film released in 2024. Directed by Barry Jenkins. Starring Aaron Pierre, Kelvin Harrison Jr. Rated 7.6 on IMDB"
+    },
+    {
+        title: "Dune: Part Two",
+        releaseYear: "2024",
+        content: "Dune: Part Two (2 hr 30 min): The epic saga continues on Arrakis as Paul Atreides faces new enemies, political intrigue, and his destiny as the prophesied leader. Sci-Fi, Drama film released in 2024. Directed by Denis Villeneuve. Starring Timothée Chalamet, Zendaya. Rated 8.2 on IMDB"
+    },
+    {
+        title: "Godzilla x Kong: The New Empire",
+        releaseYear: "2024",
+        content: "Godzilla x Kong: The New Empire (2 hr 10 min): The iconic titans clash once again as a new threat emerges, putting humanity in the balance. Action, Fantasy film released in 2024. Directed by Adam Wingard. Starring Alexander Skarsgård, Millie Bobby Brown. Rated 6.9 on IMDB"
+    },
+    {
+        title: "The Beast",
+        releaseYear: "2024",
+        content: "The Beast (1 hr 50 min): A family's dark secrets unravel, testing trust, loyalty, and survival in a gripping psychological drama. Drama, Thriller film released in 2024. Directed by Bertrand Bonello. Starring Léa Seydoux, Denis Ménochet. Rated 7.5 on IMDB"
+    },
+    {
+        title: "Anora",
+        releaseYear: "2024",
+        content: "Anora (2 hr 10 min): A stripper navigates complex relationships and self-discovery while confronting her past and seeking love. Drama, Romance film released in 2024. Directed by Sean Baker. Starring Mikey Madison, Alex Wolff. Rated 8.0 on IMDB"
     }
 ];

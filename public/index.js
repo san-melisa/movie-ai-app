@@ -1,9 +1,8 @@
 const questionOne = document.getElementById("question-one")
 const questionTwo = document.getElementById("question-two")
 const questionThree = document.getElementById("question-three")
-const main = document.getElementById("main")
+const container = document.getElementById("container")
 
-// Simple client-side validation and submit
 document.addEventListener("submit", async e => {
     if(e.target.id === "user-info-form"){
         e.preventDefault()
@@ -37,9 +36,10 @@ document.addEventListener("submit", async e => {
                 return
             }
 
-            main.innerHTML = `
+            container.innerHTML = `
                 <div class="content">
-                    <h2 class="movie-title">${data.title} (${data.releaseyear})</h2>
+                    <h2 class="movie-title">${data.title} (${data.releaseYear})</h2>
+                    <img src="${data.posterUrl}" class="poster"/>
                     <p class="movie-description">${data.recommendation}</p>
                 </div>
                 <button type="button" id="restart-btn">Go Again</button>
@@ -55,7 +55,7 @@ document.addEventListener("submit", async e => {
 
 document.addEventListener('click', (e) => {
      if (e.target.id === 'restart-btn') {
-    main.innerHTML = `
+    container.innerHTML = `
                 <form id="user-info-form">
                     <label for="question-one">What’s your favorite movie and why?</label>
                     <textarea id="question-one"></textarea>

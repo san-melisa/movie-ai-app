@@ -1,11 +1,11 @@
-import { openai, supabase } from "./config.js";
-import express from "express";
-import movies from "./content.js";
+import { openai, supabase, tmdb } from "./config.js"
+import express from "express"
+import movies from "./content.js"
 
-const app = express();
+const app = express()
 
-app.use(express.json());
-app.use(express.static("public"));
+app.use(express.json())
+app.use(express.static("public"))
 
 app.post("/api/ask", async (req, res) => {
   try {
@@ -15,26 +15,32 @@ app.post("/api/ask", async (req, res) => {
         Do you wanna have fun or do you want something serious? Answer: ${req.body.questionThree}
     `
       .replace(/\s+/g, " ")
-      .trim();
+      .trim()
     // console.log(userInput)
     const userEmbeddingResponse = await openai.embeddings.create({
       model: "text-embedding-ada-002",
       input: userInput,
     });
     const userEmbedding = userEmbeddingResponse.data[0].embedding;
-    console.log("⚡Calling match_films RPC...");
+    console.log("Calling match_films RPC...");
     const { data, error } = await supabase.rpc("match_films", {
       query_embedding: userEmbedding,
       match_threshold: 0.60,
       match_count: 1,
     });
-    console.log("✅ RPC finished");
-    console.log("RPC error:", error);
-    console.log("RPC data:", data);
+    console.log("✅ RPC finished")
 
-    const bestMatch = data[0];
+    if(!data || data.length === 0){
+        console.log("No matching films found.")
+        return res.status(404).json({ error: "No matching films found."})
+    }
 
-    console.log("bestmach", bestMatch);
+    const bestMatch = data[0]
+    console.log("bestmach", bestMatch)
+
+    const posterUrl = await getMoviePoster(bestMatch.title)
+    console.log(posterUrl)
+
     const messages = [
       {
         role: "system",
@@ -55,18 +61,19 @@ app.post("/api/ask", async (req, res) => {
       model: "gpt-4",
       temperature: 0.5,
       frequency_penalty: 0.5,
-    });
+    })
     // console.log(completion.choices[0]);
     const recommendationText = completion.choices[0].message.content;
 
     res.json({
       title: bestMatch.title,
-      releaseyear: bestMatch.releaseyear,
+      releaseYear: bestMatch.releaseyear,
       recommendation: recommendationText,
-    });
+      posterUrl: posterUrl
+    })
   } catch (error) {
-    console.error("An error has occured:" + error);
-    res.status(500).json({ error: error.message });
+    console.error("An error has occured:" + error)
+    res.status(500).json({ error: error.message })
   }
 });
 
@@ -77,13 +84,13 @@ async function createMovieEmbeddingAndSave() {
         .from("films")
         .select("id")
         .eq("title", movie.title)
-        .maybeSingle();
+        .maybeSingle()
 
-      if (checkError) throw checkError;
+      if (checkError) throw checkError
 
       if (existing) {
-        console.log(`Skipping "${movie.title}" (already exists)`);
-        continue;
+        console.log(`Skipping "${movie.title}" (already exists)`)
+        continue
       }
 
       const movieEmbeddingResponse = await openai.embeddings.create({
@@ -91,7 +98,7 @@ async function createMovieEmbeddingAndSave() {
         input: movie.content,
       });
       
-     const movieEmbedding = movieEmbeddingResponse.data[0].embedding;
+     const movieEmbedding = movieEmbeddingResponse.data[0].embedding
       console.log(movieEmbedding)
       
 
@@ -110,12 +117,43 @@ async function createMovieEmbeddingAndSave() {
   }
 }
 
+async function getMoviePoster(query) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${tmdb}&query=${encodeURIComponent(query)}`
+
+    try{
+        const res = await fetch(url)
+        if(!res.ok) throw new Error(`TMDB request failed: ${res.status}`)
+        
+        const json = await res.json()
+
+        if(!json.results || json.results.length === 0){
+            console.warn("No movie found for query:", query)
+            return null
+        }
+        
+        const movie = json.results[0]
+        console.log(movie)
+
+        if(movie.poster_path) {
+            return `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        }else {
+            console.warn("Movie found but no poster available:", movie.title)
+            return null
+        }
+    }
+    catch(error){
+        console.error('TMDB search error:', error)
+        return null
+    }
+
+}
+
 async function startServer() {
   await createMovieEmbeddingAndSave()
     .then(() => console.log("🎬 All movies inserted!"))
     .catch((err) => {
       console.error("Movie insert failed, shutting down:", err);
-      process.exit(1); // Hata durumunda sunucuyu durdurabiliriz
+      process.exit(1); 
     });
 
   app.listen(3000, () => {
