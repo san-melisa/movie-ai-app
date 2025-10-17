@@ -62,7 +62,6 @@ app.post("/api/ask", async (req, res) => {
       temperature: 0.5,
       frequency_penalty: 0.5,
     })
-    // console.log(completion.choices[0]);
     const recommendationText = completion.choices[0].message.content;
 
     res.json({
